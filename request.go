@@ -2,6 +2,7 @@ package handlerlib
 
 import (
 	"context"
+	"github.com/aliworkshop/dfilterlib"
 	"net/http"
 
 	"github.com/aliworkshop/errorslib"
@@ -80,8 +81,8 @@ type RequestModel interface {
 	Filters() map[string][]string
 	IsResponded() bool
 	SetResponded(bool)
-	SetDynamicFilters(filter []dfilters.Filter)
-	GetDynamicFilters() []dfilters.Filter
+	SetDynamicFilters(filter []dfilterlib.Filter)
+	GetDynamicFilters() []dfilterlib.Filter
 	// SetTemp sets temp into current request to handle during processing
 	// request
 	SetTemp(key string, value interface{})
@@ -89,6 +90,4 @@ type RequestModel interface {
 	// nothing found for given key
 	GetTemp(key string) interface{}
 	GetStatusCode() int
-
-	VerifyCaptcha() errors.ErrorModel
 }
