@@ -7,7 +7,7 @@ import (
 )
 
 var headerMissMatchError = errorslib.New(nil).
-	WithType(errors.TypeForbidden).
+	WithType(errorslib.TypeForbidden).
 	WithId("HeaderMissMatchError").
 	WithMessage("System didn't meet sufficient requirements to process your request.").
 	WithDetail("insufficient header")

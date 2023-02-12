@@ -32,13 +32,15 @@ func NewModel(h Handler, res Responder) HandlerModel {
 	}
 }
 
-func Handle(model HandlerModel, request RequestModel, respond bool) {
+func Handle(model HandlerModel, request RequestModel, respond bool) bool {
 	result, err := model.HandlerFunc()(request)
 	if err != nil {
 		model.RespondWithError(request, err)
-		return
+		return false
 	}
 	if respond && !model.IsSkippingSuccessResponses() && !request.IsResponded() {
 		model.Respond(request, "", result)
+		return true
 	}
+	return true
 }
