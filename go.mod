@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/aliworkshop/configlib v1.0.0
 	github.com/aliworkshop/errorslib v1.0.0
-	github.com/aliworkshop/loggerlib v1.0.1
+	github.com/aliworkshop/loggerlib v1.0.2
 	github.com/nicksnyder/go-i18n/v2 v2.2.1
 )
 
@@ -22,6 +22,9 @@ require (
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/spf13/viper v1.15.0 // indirect
 	github.com/subosito/gotenv v1.4.2 // indirect
+	go.uber.org/atomic v1.9.0 // indirect
+	go.uber.org/multierr v1.8.0 // indirect
+	go.uber.org/zap v1.21.0 // indirect
 	golang.org/x/sys v0.3.0 // indirect
 	golang.org/x/text v0.5.0 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
