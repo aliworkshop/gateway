@@ -44,25 +44,11 @@ type RequestModel interface {
 
 	SetAuth(auth authorization.Model)
 	GetAuth() authorization.Model
-	SetSession(session authorization.SessionModel)
-	GetSession() authorization.SessionModel
 	Token() (token string)
 	IsAuthenticated() bool
 	GetCurrentAccountId() interface{}
 	GetScopes() []string
 	HasScope(scopes ...string) bool
-	GetRoles() []string
-	HasRole(roles ...string) bool
-
-	SetImportantAuth(auth authorization.Model)
-	GetImportantAuth() authorization.Model
-	SetImportantSession(session authorization.SessionModel)
-	GetImportantSession() authorization.SessionModel
-	ImportantToken() (token string)
-	IsImportantAuthenticated() bool
-	GetImportantCurrentAccountId() interface{}
-	GetImportantScopes() []string
-	HasImportantScope(scopes ...string) bool
 
 	GetBody() interface{}
 	SetBody(interface{})
