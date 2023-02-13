@@ -18,6 +18,8 @@ type Claim interface {
 	HasScope(scopes ...string) bool
 	GetScopes() []string
 	GetName() string
+	GetEmail() string
+	GetMobile() string
 	GetExpireAt() time.Time
 	GetUserId() uint64
 }
