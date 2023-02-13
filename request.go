@@ -3,6 +3,7 @@ package handlerlib
 import (
 	"context"
 	"github.com/aliworkshop/dfilterlib"
+	"mime/multipart"
 	"net/http"
 
 	"github.com/aliworkshop/errorslib"
@@ -64,6 +65,7 @@ type RequestModel interface {
 	SetModel(interface{})
 	GetQuery(key string) (string, bool)
 	GetParam(key string) (interface{}, bool)
+	GetFile(key string) (multipart.FileHeader, error)
 	Filters() map[string][]string
 	IsResponded() bool
 	SetResponded(bool)
