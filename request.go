@@ -65,7 +65,7 @@ type RequestModel interface {
 	SetModel(interface{})
 	GetQuery(key string) (string, bool)
 	GetParam(key string) (interface{}, bool)
-	GetFile(key string) (multipart.FileHeader, error)
+	GetFile(key string) (*multipart.FileHeader, error)
 	Filters() map[string][]string
 	IsResponded() bool
 	SetResponded(bool)
