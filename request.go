@@ -56,15 +56,13 @@ type RequestModel interface {
 	BaseRequest() *http.Request
 	BaseWriter() http.ResponseWriter
 	HandleRequestBody(body interface{}) (err errorslib.ErrorModel)
-	HandleRequestJsonBody(body interface{}) (err errorslib.ErrorModel)
-	HandleRequestParams(params interface{}) error
 	GetLanguage() Language
 	MustLocalize(lc *i18n.LocalizeConfig) string
 	ShouldLocalize(lc *i18n.LocalizeConfig) string
 	Localize(msgId string, message string, params ...map[string]interface{}) string
 	SetModel(interface{})
-	GetQuery(key string) (string, bool)
-	GetParam(key string) (interface{}, bool)
+	GetQuery(key string) string
+	GetParam(key string) string
 	GetFile(key string) (*multipart.FileHeader, error)
 	Filters() map[string][]string
 	IsResponded() bool
