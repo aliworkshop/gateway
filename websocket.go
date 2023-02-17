@@ -8,7 +8,8 @@ type WebSocketModel interface {
 	SetCloseHandler(f func(code int, text string) error) error
 	WriteControl(int, []byte, time.Time) error
 	Write(int, []byte) error
-	SetWriteDeadLine(int)
-	SetReadDeadLine(int)
+	WriteJson(interface{}) error
+	SetWriteDeadLine(deadline time.Duration)
+	SetReadDeadLine(deadline time.Duration)
 	Close()
 }
