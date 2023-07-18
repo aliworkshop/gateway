@@ -1,5 +1,7 @@
 package handlerlib
 
+import "github.com/aliworkshop/loggerlib/logger"
+
 type HandlerModel interface {
 	Handler
 	Responder
@@ -35,6 +37,10 @@ func NewModel(h Handler, res Responder) HandlerModel {
 func Handle(model HandlerModel, request RequestModel, respond bool) bool {
 	result, err := model.HandlerFunc()(request)
 	if err != nil {
+		model.Logger().With(logger.Field{
+			"message": err.Message(),
+			"detail":  err.Detail(),
+		}).ErrorF("error on handler func")
 		model.RespondWithError(request, err)
 		return false
 	}
