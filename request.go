@@ -43,8 +43,8 @@ type Requester interface {
 	Cookie(name string) (string, error)
 	SetCookie(cookie any)
 
-	SetAuth(auth authorization.Model)
-	GetAuth() authorization.Model
+	SetAuth(auth authorization.Authorizer)
+	GetAuth() authorization.Authorizer
 	Token() (token string)
 	IsAuthenticated() bool
 	GetCurrentAccountId() any
