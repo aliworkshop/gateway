@@ -1,8 +1,8 @@
-package handlerlib
+package gateway
 
 import "time"
 
-type WebSocketModel interface {
+type WebSocketHandler interface {
 	Read() (int, []byte, error)
 	SetPingHandler(func(string) error) error
 	SetCloseHandler(f func(code int, text string) error) error

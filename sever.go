@@ -1,4 +1,4 @@
-package handlerlib
+package gateway
 
 import (
 	"github.com/aliworkshop/errorslib"
@@ -12,7 +12,7 @@ type ServerModel interface {
 	SetMonitoringHandler(monitoring MonitoringModel)
 	AddMonitoring(m *Monitoring) (prometheus.Collector, errorslib.ErrorModel)
 	StartMonitoring()
-	Middleware(handlers ...HandlerModel)
+	Middleware(handlers ...HandlerEngine)
 	SetupMiddlewares(logger logger.Logger, languageBundle *i18n.Bundle)
 	NewRouterGroup(path string) RouterGroupModel
 	Shutdown(timeout time.Duration) error

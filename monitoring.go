@@ -1,4 +1,4 @@
-package handlerlib
+package gateway
 
 type MetricType string
 
@@ -28,8 +28,8 @@ type Monitoring struct {
 }
 
 type MonitoringModel interface {
-	OnRequestStart(request RequestModel)
-	OnRequestEnd(request RequestModel)
+	OnRequestStart(request Requester)
+	OnRequestEnd(request Requester)
 }
 
 type MonitoringHandler interface {
@@ -42,8 +42,8 @@ var DefaultMonitoring MonitoringModel = new(emptyMonitoringHandler)
 type emptyMonitoringHandler struct {
 }
 
-func (h *emptyMonitoringHandler) OnRequestStart(request RequestModel) {
+func (h *emptyMonitoringHandler) OnRequestStart(request Requester) {
 }
 
-func (h *emptyMonitoringHandler) OnRequestEnd(request RequestModel) {
+func (h *emptyMonitoringHandler) OnRequestEnd(request Requester) {
 }

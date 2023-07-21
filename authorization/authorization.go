@@ -2,7 +2,7 @@ package authorization
 
 import "time"
 
-type Model interface {
+type Authorizer interface {
 	Token() (token string)
 	SetToken(token string)
 	SetClaim(claim Claim)

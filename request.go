@@ -1,4 +1,4 @@
-package handlerlib
+package gateway
 
 import (
 	"context"
@@ -7,7 +7,7 @@ import (
 	"net/http"
 
 	"github.com/aliworkshop/errorslib"
-	"github.com/aliworkshop/handlerlib/authorization"
+	"github.com/aliworkshop/gateway/authorization"
 	"github.com/aliworkshop/loggerlib/logger"
 	"github.com/nicksnyder/go-i18n/v2/i18n"
 )
@@ -17,7 +17,7 @@ type Language struct {
 	Localizer      *i18n.Localizer
 }
 
-type Pagination interface {
+type Paginator interface {
 	PerPage() int
 	Page() int
 	SetPage(int)
@@ -25,42 +25,42 @@ type Pagination interface {
 	SortBy() string
 }
 
-type RequestModel interface {
+type Requester interface {
 	SetUid(uid string)
 	GetUid() string
 
 	SetConnectionContext(ctx context.Context)
 	GetConnectionContext() context.Context
-	WithLogger(l logger.Logger) RequestModel
+	WithLogger(l logger.Logger) Requester
 	Logger() logger.Logger
-	SetContext(interface{})
-	GetContext() interface{}
+	SetContext(any)
+	GetContext() any
 	GetClientIp() string
 	GetMethod() string
 	GetPath() string
 	GetHeader(key string) string
-	Paging() Pagination
+	Pager() Paginator
 	Cookie(name string) (string, error)
-	SetCookie(cookie interface{})
+	SetCookie(cookie any)
 
 	SetAuth(auth authorization.Model)
 	GetAuth() authorization.Model
 	Token() (token string)
 	IsAuthenticated() bool
-	GetCurrentAccountId() interface{}
+	GetCurrentAccountId() any
 	GetScopes() []string
 	HasScope(scopes ...string) bool
 
-	GetBody() interface{}
-	SetBody(interface{})
-	BaseRequest() *http.Request
-	BaseWriter() http.ResponseWriter
-	HandleRequestBody(body interface{}) (err errorslib.ErrorModel)
+	GetBody() any
+	SetBody(any)
+	Request() *http.Request
+	Writer() http.ResponseWriter
+	BindRequest(body any) (err errorslib.ErrorModel)
 	GetLanguage() Language
 	MustLocalize(lc *i18n.LocalizeConfig) string
 	ShouldLocalize(lc *i18n.LocalizeConfig) string
-	Localize(msgId string, message string, params ...map[string]interface{}) string
-	SetModel(interface{})
+	Localize(msgId string, message string, params ...map[string]any) string
+	SetModel(any)
 	GetQuery(key string) string
 	GetParam(key string) string
 	GetFile(key string) (*multipart.FileHeader, error)
@@ -71,9 +71,9 @@ type RequestModel interface {
 	GetDynamicFilters() []dfilterlib.Filter
 	// SetTemp sets temp into current request to handle during processing
 	// request
-	SetTemp(key string, value interface{})
+	SetTemp(key string, value any)
 	// GetTemp gets the existing temp value from request, returns nil if
 	// nothing found for given key
-	GetTemp(key string) interface{}
+	GetTemp(key string) any
 	GetStatusCode() int
 }
