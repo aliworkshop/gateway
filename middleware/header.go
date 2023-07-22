@@ -13,7 +13,6 @@ var headerMissMatchError = errorslib.New(nil).
 	WithDetail("insufficient header")
 
 type header struct {
-	gateway.HandlerEngine
 	config struct {
 		Headers []struct {
 			Key   string
@@ -22,19 +21,15 @@ type header struct {
 	}
 }
 
-func NewHeaderHandler(handlerModel gateway.HandlerEngine,
-	configRegistry configlib.Registry) gateway.HandlerEngine {
-	handler := &header{
-		HandlerEngine: handlerModel,
-	}
-	handler.SetHandlerFunc(handler.handle)
+func NewHeaderHandler(configRegistry configlib.Registry) gateway.Handler {
+	handler := new(header)
 	if err := configRegistry.Unmarshal(&handler.config); err != nil {
 		panic(err)
 	}
 	return handler
 }
 
-func (h *header) handle(request gateway.Requester) (interface{}, errorslib.ErrorModel) {
+func (h *header) Handle(request gateway.Requester) (any, errorslib.ErrorModel) {
 	for _, header := range h.config.Headers {
 		v := request.GetHeader(header.Key)
 		if v != header.Value {

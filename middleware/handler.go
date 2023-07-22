@@ -5,12 +5,11 @@ import (
 	"github.com/aliworkshop/gateway"
 )
 
-func Get(handlerModel gateway.HandlerEngine,
-	configRegistry configlib.Registry,
-	middlewareType string) gateway.HandlerEngine {
+func Get(configRegistry configlib.Registry,
+	middlewareType string) gateway.Handler {
 	switch middlewareType {
 	case "header":
-		return NewHeaderHandler(handlerModel, configRegistry)
+		return NewHeaderHandler(configRegistry)
 	}
 	return nil
 }

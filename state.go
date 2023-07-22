@@ -3,6 +3,7 @@ package gateway
 type Status string
 
 const (
+	StatusUnknown           Status = "UNKNOWN"            // like http status 301
 	StatusMovedPermanently  Status = "MOVED"              // like http status 301
 	StatusFound             Status = "FOUND"              // like http status 302
 	StatusPermanentRedirect Status = "PERMANENT_REDIRECT" // like http status 307

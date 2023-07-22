@@ -2,8 +2,6 @@ package gateway
 
 import (
 	"github.com/aliworkshop/configlib"
-	"github.com/aliworkshop/loggerlib/logger"
-	"github.com/nicksnyder/go-i18n/v2/i18n"
 )
 
 type RouterGroupModel interface {
@@ -12,18 +10,17 @@ type RouterGroupModel interface {
 	SetMonitoringHandler(monitoring MonitoringModel)
 
 	Group(relativePath string) RouterGroupModel
-	READ(path string, handlers ...HandlerEngine)
-	CREATE(path string, handlers ...HandlerEngine)
-	UPDATE(path string, handlers ...HandlerEngine)
-	DELETE(path string, handlers ...HandlerEngine)
+	READ(path string, handlers ...Handler)
+	CREATE(path string, handlers ...Handler)
+	UPDATE(path string, handlers ...Handler)
+	DELETE(path string, handlers ...Handler)
 	STATIC(path string)
 	// middleware
-	Middleware(handlers ...HandlerEngine)
-	SetupMiddlewares(registry configlib.Registry,
-		logger logger.Logger, languageBundle *i18n.Bundle)
+	Middleware(handlers ...Handler)
+	SetupMiddlewares(registry configlib.Registry)
 }
 
-func RegisterRouters(model RouterGroupModel, path string, action ActionType, handlers ...HandlerEngine) {
+func RegisterRouters(model RouterGroupModel, path string, action ActionType, handlers ...Handler) {
 	switch action {
 	case ActionRead:
 		model.READ(path, handlers...)

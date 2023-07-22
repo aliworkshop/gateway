@@ -8,14 +8,8 @@ import (
 
 	"github.com/aliworkshop/errorslib"
 	"github.com/aliworkshop/gateway/authorization"
-	"github.com/aliworkshop/loggerlib/logger"
 	"github.com/nicksnyder/go-i18n/v2/i18n"
 )
-
-type Language struct {
-	AcceptLanguage string
-	Localizer      *i18n.Localizer
-}
 
 type Paginator interface {
 	PerPage() int
@@ -31,15 +25,13 @@ type Requester interface {
 
 	SetConnectionContext(ctx context.Context)
 	GetConnectionContext() context.Context
-	WithLogger(l logger.Logger) Requester
-	Logger() logger.Logger
 	SetContext(any)
 	GetContext() any
 	GetClientIp() string
 	GetMethod() string
 	GetPath() string
 	GetHeader(key string) string
-	Pager() Paginator
+	Paginator() Paginator
 	Cookie(name string) (string, error)
 	SetCookie(cookie any)
 

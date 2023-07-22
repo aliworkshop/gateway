@@ -2,7 +2,6 @@ package gateway
 
 import (
 	"github.com/aliworkshop/errorslib"
-	"github.com/aliworkshop/loggerlib/logger"
 )
 
 type HandlerFunc func(request Requester) (any, errorslib.ErrorModel)
@@ -17,8 +16,5 @@ const (
 )
 
 type Handler interface {
-	Logger() logger.Logger
-	Upgrade(model Requester) (WebSocketHandler, error)
-	HandlerFunc() HandlerFunc
-	SetHandlerFunc(hand HandlerFunc)
+	Handle(request Requester) (any, errorslib.ErrorModel)
 }
