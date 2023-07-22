@@ -1,4 +1,4 @@
-module github.com/aliworkshop/gateway
+module github.com/aliworkshop/gateway/v2
 
 go 1.18
 
