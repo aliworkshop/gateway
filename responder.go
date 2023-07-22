@@ -14,8 +14,8 @@ type Responder interface {
 }
 
 type Response struct {
-	Page    int  `json:"page"`
-	PerPage int  `json:"per_page"`
-	Items   any  `json:"items"`
-	Total   uint `json:"total"`
+	Page    int    `json:"page"`
+	PerPage int    `json:"per_page"`
+	Items   any    `json:"items"`
+	Total   uint64 `json:"total"`
 }
