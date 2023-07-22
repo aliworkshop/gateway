@@ -7,7 +7,7 @@ import (
 	"net/http"
 
 	"github.com/aliworkshop/errorslib"
-	"github.com/aliworkshop/gateway/authorization"
+	"github.com/aliworkshop/gateway/v2/authorization"
 	"github.com/nicksnyder/go-i18n/v2/i18n"
 )
 

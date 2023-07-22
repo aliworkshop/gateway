@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"github.com/aliworkshop/configlib"
-	"github.com/aliworkshop/gateway"
+	"github.com/aliworkshop/gateway/v2"
 )
 
 func Get(configRegistry configlib.Registry,

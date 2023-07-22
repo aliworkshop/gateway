@@ -3,7 +3,7 @@ package middleware
 import (
 	"github.com/aliworkshop/configlib"
 	"github.com/aliworkshop/errorslib"
-	"github.com/aliworkshop/gateway"
+	"github.com/aliworkshop/gateway/v2"
 )
 
 var headerMissMatchError = errorslib.New(nil).
