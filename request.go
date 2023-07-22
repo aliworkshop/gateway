@@ -17,6 +17,8 @@ type Paginator interface {
 	SetPage(int)
 	SetPerPage(int)
 	SortBy() string
+	Total() uint64
+	SetTotal(uint64)
 }
 
 type Requester interface {
