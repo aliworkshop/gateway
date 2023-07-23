@@ -1,14 +1,14 @@
 package gateway
 
 import (
-	"github.com/aliworkshop/errorslib"
+	"github.com/aliworkshop/error"
 	"github.com/nicksnyder/go-i18n/v2/i18n"
 )
 
 type Responder interface {
 	SetTotal(uint) Responder
 	Respond(Requester, Status, any)
-	RespondError(model Requester, err errorslib.ErrorModel)
+	RespondError(model Requester, err error.ErrorModel)
 	LanguageBundle() *i18n.Bundle
 	SetLanguageBundle(bundle *i18n.Bundle)
 }

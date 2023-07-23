@@ -2,11 +2,11 @@ package gateway
 
 import (
 	"context"
-	"github.com/aliworkshop/dfilterlib"
+	"github.com/aliworkshop/dfilter"
 	"mime/multipart"
 	"net/http"
 
-	"github.com/aliworkshop/errorslib"
+	errors "github.com/aliworkshop/error"
 	"github.com/aliworkshop/gateway/v2/authorization"
 	"github.com/nicksnyder/go-i18n/v2/i18n"
 )
@@ -49,7 +49,7 @@ type Requester interface {
 	SetBody(any)
 	Request() *http.Request
 	Writer() http.ResponseWriter
-	BindRequest(body any) (err errorslib.ErrorModel)
+	BindRequest(body any) (err errors.ErrorModel)
 	GetLanguage() Language
 	MustLocalize(lc *i18n.LocalizeConfig) string
 	ShouldLocalize(lc *i18n.LocalizeConfig) string
@@ -61,8 +61,8 @@ type Requester interface {
 	Filters() map[string][]string
 	IsResponded() bool
 	SetResponded(bool)
-	SetDynamicFilters(filter []dfilterlib.Filter)
-	GetDynamicFilters() []dfilterlib.Filter
+	SetDynamicFilters(filter []dfilter.Filter)
+	GetDynamicFilters() []dfilter.Filter
 	// SetTemp sets temp into current request to handle during processing
 	// request
 	SetTemp(key string, value any)

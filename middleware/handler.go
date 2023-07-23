@@ -1,11 +1,11 @@
 package middleware
 
 import (
-	"github.com/aliworkshop/configlib"
+	"github.com/aliworkshop/configer"
 	"github.com/aliworkshop/gateway/v2"
 )
 
-func Get(configRegistry configlib.Registry,
+func Get(configRegistry configer.Registry,
 	middlewareType string) gateway.Handler {
 	switch middlewareType {
 	case "header":

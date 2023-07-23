@@ -1,7 +1,7 @@
 package gateway
 
 import (
-	"github.com/aliworkshop/configlib"
+	"github.com/aliworkshop/configer"
 )
 
 type RouterGroupModel interface {
@@ -17,7 +17,7 @@ type RouterGroupModel interface {
 	STATIC(path string)
 	// middleware
 	Middleware(handlers ...Handler)
-	SetupMiddlewares(registry configlib.Registry)
+	SetupMiddlewares(registry configer.Registry)
 }
 
 func RegisterRouters(model RouterGroupModel, path string, action ActionType, handlers ...Handler) {

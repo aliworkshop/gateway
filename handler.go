@@ -1,10 +1,10 @@
 package gateway
 
 import (
-	"github.com/aliworkshop/errorslib"
+	"github.com/aliworkshop/error"
 )
 
-type HandlerFunc func(request Requester) (any, errorslib.ErrorModel)
+type HandlerFunc func(request Requester) (any, error.ErrorModel)
 
 type ActionType string
 
@@ -16,5 +16,5 @@ const (
 )
 
 type Handler interface {
-	Handle(request Requester) (any, errorslib.ErrorModel)
+	Handle(request Requester) (any, error.ErrorModel)
 }

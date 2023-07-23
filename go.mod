@@ -3,10 +3,10 @@ module github.com/aliworkshop/gateway/v2
 go 1.18
 
 require (
-	github.com/aliworkshop/configlib v1.0.0
-	github.com/aliworkshop/dfilterlib v1.0.0
-	github.com/aliworkshop/errorslib v1.0.0
-	github.com/aliworkshop/loggerlib v1.2.0
+	github.com/aliworkshop/configer v1.1.0
+	github.com/aliworkshop/dfilter v1.1.0
+	github.com/aliworkshop/error v1.1.0
+	github.com/aliworkshop/logger v1.4.0
 	github.com/nicksnyder/go-i18n/v2 v2.2.1
 	github.com/prometheus/client_golang v1.12.2
 )

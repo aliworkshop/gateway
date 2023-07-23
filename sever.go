@@ -1,14 +1,14 @@
 package gateway
 
 import (
-	"github.com/aliworkshop/errorslib"
+	errors "github.com/aliworkshop/error"
 	"github.com/prometheus/client_golang/prometheus"
 	"time"
 )
 
 type ServerModel interface {
 	SetMonitoringHandler(monitoring MonitoringModel)
-	AddMonitoring(m *Monitoring) (prometheus.Collector, errorslib.ErrorModel)
+	AddMonitoring(m *Monitoring) (prometheus.Collector, errors.ErrorModel)
 	StartMonitoring()
 	Middleware(handlers ...Handler)
 	SetupMiddlewares()

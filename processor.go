@@ -1,6 +1,6 @@
 package gateway
 
-import "github.com/aliworkshop/loggerlib/logger"
+import "github.com/aliworkshop/logger/logger"
 
 type Processor interface {
 	Process(handler Handler, request Requester, respond bool) (ok bool)
