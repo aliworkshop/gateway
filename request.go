@@ -15,10 +15,11 @@ type Paginator interface {
 	PerPage() int
 	Page() int
 	SetPage(int)
-	SetPerPage(int)
+	SetLimit(int)
+	SetSort(string)
+	SetTotal(uint64)
 	SortBy() string
 	Total() uint64
-	SetTotal(uint64)
 }
 
 type Requester interface {

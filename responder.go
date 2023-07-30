@@ -6,11 +6,9 @@ import (
 )
 
 type Responder interface {
-	SetTotal(uint) Responder
 	Respond(Requester, Status, any)
 	RespondError(model Requester, err error.ErrorModel)
 	LanguageBundle() *i18n.Bundle
-	SetLanguageBundle(bundle *i18n.Bundle)
 }
 
 type Response struct {
