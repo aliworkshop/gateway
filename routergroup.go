@@ -1,14 +1,6 @@
 package gateway
 
-import (
-	"github.com/aliworkshop/configer"
-)
-
 type RouterGroupModel interface {
-	// SetMonitoringHandler set monitoring handler before handling routes
-	// to monitor requests
-	SetMonitoringHandler(monitoring MonitoringModel)
-
 	Group(relativePath string) RouterGroupModel
 	READ(path string, handlers ...Handler)
 	CREATE(path string, handlers ...Handler)
@@ -17,7 +9,6 @@ type RouterGroupModel interface {
 	STATIC(path string)
 	// middleware
 	Middleware(handlers ...Handler)
-	SetupMiddlewares(registry configer.Registry)
 }
 
 func RegisterRouters(model RouterGroupModel, path string, action ActionType, handlers ...Handler) {
