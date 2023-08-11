@@ -1,7 +1,7 @@
 package gateway
 
 import (
-	"github.com/aliworkshop/logger/logger"
+	"github.com/aliworkshop/logger"
 	"github.com/nicksnyder/go-i18n/v2/i18n"
 )
 
