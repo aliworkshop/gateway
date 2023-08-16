@@ -3,6 +3,8 @@ package gateway
 import (
 	"context"
 	"github.com/aliworkshop/dfilter"
+	"io"
+	"io/fs"
 	"mime/multipart"
 	"net/http"
 
@@ -71,4 +73,9 @@ type Requester interface {
 	// nothing found for given key
 	GetTemp(key string) any
 	GetStatusCode() int
+
+	RespondBlob(status Status, contentType string, body []byte) errors.ErrorModel
+	RespondStream(status Status, contentType string, reader io.Reader) errors.ErrorModel
+	RespondFile(file string) errors.ErrorModel
+	RespondFsFile(file string, filesystem fs.FS) errors.ErrorModel
 }
