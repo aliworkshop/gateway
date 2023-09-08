@@ -9,7 +9,7 @@ type Authorizer interface {
 	GetClaim() Claim
 	IsAuthenticated() bool
 	SetIsAuthenticated(isAuthenticated bool)
-	GetCurrentAccountId() interface{}
+	GetCurrentAccountId() any
 	HasScope(scopes ...string) bool
 	GetScopes() []string
 }
@@ -22,4 +22,5 @@ type Claim interface {
 	GetMobile() string
 	GetExpireAt() time.Time
 	GetUserId() uint64
+	GetUuid() string
 }
