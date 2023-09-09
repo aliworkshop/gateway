@@ -26,24 +26,3 @@ type Monitoring struct {
 	Args        []string
 	Buckets     []float64
 }
-
-type MonitoringModel interface {
-	OnRequestStart(request Requester)
-	OnRequestEnd(request Requester)
-}
-
-type MonitoringHandler interface {
-	Handler
-	MonitoringModel
-}
-
-var DefaultMonitoring MonitoringModel = new(emptyMonitoringHandler)
-
-type emptyMonitoringHandler struct {
-}
-
-func (h *emptyMonitoringHandler) OnRequestStart(request Requester) {
-}
-
-func (h *emptyMonitoringHandler) OnRequestEnd(request Requester) {
-}
