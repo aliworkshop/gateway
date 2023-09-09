@@ -53,11 +53,9 @@ type Requester interface {
 	Request() *http.Request
 	Writer() http.ResponseWriter
 	BindRequest(body any) (err errors.ErrorModel)
-	GetLanguage() Language
 	MustLocalize(lc *i18n.LocalizeConfig) string
 	ShouldLocalize(lc *i18n.LocalizeConfig) string
 	Localize(msgId string, message string, params ...map[string]any) string
-	SetModel(any)
 	GetQuery(key string) string
 	GetParam(key string) string
 	GetFile(key string) (*multipart.FileHeader, error)
