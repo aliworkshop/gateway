@@ -6,13 +6,13 @@ import (
 
 type HandlerFunc func(request Requester) (any, error.ErrorModel)
 
-type ActionType string
+type Action string
 
 const (
-	ActionCreate ActionType = "CREATE"
-	ActionRead   ActionType = "READ"
-	ActionUpdate ActionType = "UPDATE"
-	ActionDelete ActionType = "DELETE"
+	Create Action = "CREATE"
+	Read   Action = "READ"
+	Update Action = "UPDATE"
+	Delete Action = "DELETE"
 )
 
 type Handler interface {

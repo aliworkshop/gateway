@@ -11,15 +11,15 @@ type RouterGroupModel interface {
 	Middleware(handlers ...Handler)
 }
 
-func RegisterRouters(model RouterGroupModel, path string, action ActionType, handlers ...Handler) {
+func RegisterRouters(model RouterGroupModel, path string, action Action, handlers ...Handler) {
 	switch action {
-	case ActionRead:
+	case Read:
 		model.READ(path, handlers...)
-	case ActionCreate:
+	case Create:
 		model.CREATE(path, handlers...)
-	case ActionUpdate:
+	case Update:
 		model.UPDATE(path, handlers...)
-	case ActionDelete:
+	case Delete:
 		model.DELETE(path, handlers...)
 	}
 }
