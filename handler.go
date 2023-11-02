@@ -4,8 +4,6 @@ import (
 	"github.com/aliworkshop/error"
 )
 
-type HandlerFunc func(request Requester) (any, error.ErrorModel)
-
 type Action string
 
 const (

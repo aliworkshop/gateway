@@ -9,7 +9,8 @@ type Authorizer interface {
 	GetClaim() Claim
 	IsAuthenticated() bool
 	SetIsAuthenticated(isAuthenticated bool)
-	GetCurrentAccountId() any
+	GetCurrentAccountId() uint64
+	GetCurrentAccountUuid() string
 	HasScope(scopes ...string) bool
 	GetScopes() []string
 }

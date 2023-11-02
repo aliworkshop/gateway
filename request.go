@@ -44,7 +44,8 @@ type Requester interface {
 	GetAuth() authorization.Authorizer
 	Token() (token string)
 	IsAuthenticated() bool
-	GetCurrentAccountId() any
+	GetCurrentAccountId() uint64
+	GetCurrentAccountUuid() string
 	GetScopes() []string
 	HasScope(scopes ...string) bool
 
@@ -71,6 +72,7 @@ type Requester interface {
 	// nothing found for given key
 	GetTemp(key string) any
 	GetStatusCode() int
+	Websocket() (WebSocketHandler, errors.ErrorModel)
 
 	RespondBlob(status Status, contentType string, body []byte) errors.ErrorModel
 	RespondStream(status Status, contentType string, reader io.Reader) errors.ErrorModel
