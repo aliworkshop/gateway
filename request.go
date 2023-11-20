@@ -60,6 +60,7 @@ type Requester interface {
 	GetQuery(key string) string
 	GetParam(key string) string
 	GetFile(key string) (*multipart.FileHeader, error)
+	GetFiles(key string) ([]*multipart.FileHeader, error)
 	Filters() map[string][]string
 	IsResponded() bool
 	SetResponded(bool)
