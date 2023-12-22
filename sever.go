@@ -12,6 +12,7 @@ type ServerModel interface {
 	Middleware(handlers ...Handler)
 	SetController(controller Controller)
 	NewRouterGroup(path string) RouterGroupModel
+	LoadHtml(path string)
 	Shutdown(timeout time.Duration) error
 	Run(...string) error
 }
