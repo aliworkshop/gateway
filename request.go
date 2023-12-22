@@ -79,4 +79,5 @@ type Requester interface {
 	RespondStream(status Status, contentType string, reader io.Reader) errors.ErrorModel
 	RespondFile(file string) errors.ErrorModel
 	RespondFsFile(file string, filesystem fs.FS) errors.ErrorModel
+	RespondHtml(status int, name string, body any) errors.ErrorModel
 }
