@@ -1,5 +1,7 @@
 package gateway
 
+import "net/http"
+
 type RouterGroupModel interface {
 	Group(relativePath string) RouterGroupModel
 	READ(path string, handlers ...Handler)
@@ -7,6 +9,7 @@ type RouterGroupModel interface {
 	UPDATE(path string, handlers ...Handler)
 	DELETE(path string, handlers ...Handler)
 	STATIC(path string)
+	ServeHttp(w http.ResponseWriter, req *http.Request)
 	// middleware
 	Middleware(handlers ...Handler)
 }
