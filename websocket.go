@@ -1,15 +1,16 @@
 package gateway
 
-import "time"
+import (
+	"context"
+	"time"
+)
 
 type WebSocketHandler interface {
-	Read() (int, []byte, error)
-	SetPingHandler(func(string) error) error
-	SetCloseHandler(f func(code int, text string) error) error
-	WriteControl(int, []byte, time.Time) error
-	Write(int, []byte) error
-	WriteJson(interface{}) error
-	SetWriteDeadLine(deadline time.Duration)
-	SetReadDeadLine(deadline time.Duration)
+	Read(context.Context) (int, []byte, error)
+	Write(context.Context, int, []byte) error
+	WriteJson(context.Context, interface{}) error
+	SetWriteDeadLine(deadline time.Duration) error
+	SetReadDeadLine(deadline time.Duration) error
+	Ping(context.Context) error
 	Close()
 }

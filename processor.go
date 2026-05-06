@@ -3,10 +3,10 @@ package gateway
 import "github.com/aliworkshop/logger"
 
 type Processor interface {
-	Process(handler Handler, request Requester, respond bool) (ok bool)
+	Process(handler Handler, request HttpRequester, respond bool) (ok bool)
 }
 
-func (c *controller) Process(handler Handler, request Requester, respond bool) (ok bool) {
+func (c *controller) Process(handler Handler, request HttpRequester, respond bool) (ok bool) {
 	result, err := handler.Handle(request)
 	if err != nil {
 		c.log.With(logger.Field{

@@ -1,13 +1,13 @@
 package gateway
 
 import (
-	"github.com/aliworkshop/error"
+	"github.com/aliworkshop/errors"
 	"github.com/nicksnyder/go-i18n/v2/i18n"
 )
 
 type Responder interface {
-	Respond(Requester, Status, any)
-	RespondError(model Requester, err error.ErrorModel)
+	Respond(HttpRequester, Status, any)
+	RespondError(model HttpRequester, err errors.ErrorModel)
 	LanguageBundle() *i18n.Bundle
 }
 

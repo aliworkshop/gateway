@@ -10,18 +10,19 @@ type Authorizer interface {
 	IsAuthenticated() bool
 	SetIsAuthenticated(isAuthenticated bool)
 	GetCurrentAccountId() uint64
-	GetCurrentAccountUuid() string
 	HasScope(scopes ...string) bool
-	GetScopes() []string
+	GetScopes() map[string]uint16
+	HasRole(roles ...string) bool
+	GetRoles() map[string]uint16
 }
 
 type Claim interface {
 	HasScope(scopes ...string) bool
-	GetScopes() []string
-	GetName() string
+	GetScopes() map[string]uint16
+	HasRole(roles ...string) bool
+	GetRoles() map[string]uint16
 	GetEmail() string
-	GetMobile() string
 	GetExpireAt() time.Time
 	GetUserId() uint64
-	GetUuid() string
+	GetIssuer() string
 }

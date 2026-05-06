@@ -1,7 +1,7 @@
 package gateway
 
 import (
-	errors "github.com/aliworkshop/error"
+	errors "github.com/aliworkshop/errors"
 	"github.com/prometheus/client_golang/prometheus"
 	"time"
 )

@@ -1,7 +1,7 @@
 package gateway
 
 import (
-	"github.com/aliworkshop/error"
+	"github.com/aliworkshop/errors"
 )
 
 type Action string
@@ -14,5 +14,5 @@ const (
 )
 
 type Handler interface {
-	Handle(request Requester) (any, error.ErrorModel)
+	Handle(request HttpRequester) (any, errors.ErrorModel)
 }

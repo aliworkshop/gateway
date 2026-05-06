@@ -2,27 +2,16 @@ package gateway
 
 import (
 	"context"
-	"github.com/aliworkshop/dfilter"
 	"io"
 	"io/fs"
 	"mime/multipart"
 	"net/http"
 
-	errors "github.com/aliworkshop/error"
+	"github.com/aliworkshop/dfilter"
+	errors "github.com/aliworkshop/errors"
 	"github.com/aliworkshop/gateway/v2/authorization"
 	"github.com/nicksnyder/go-i18n/v2/i18n"
 )
-
-type Paginator interface {
-	PerPage() int
-	Page() int
-	SetPage(int)
-	SetLimit(int)
-	SetSort(string)
-	SetTotal(uint64)
-	SortBy() string
-	Total() uint64
-}
 
 type Requester interface {
 	SetUid(uid string)
@@ -36,45 +25,63 @@ type Requester interface {
 	GetMethod() string
 	GetPath() string
 	GetHeader(key string) string
-	Paginator() Paginator
+	Paginator() IPaginator
+	SetPaginator(paging IPaginator)
 	Cookie(name string) (string, error)
 	SetCookie(cookie any)
+	Sorter() Sorter
+	SetSorter(sorting Sorter)
 
 	SetAuth(auth authorization.Authorizer)
 	GetAuth() authorization.Authorizer
 	Token() (token string)
 	IsAuthenticated() bool
 	GetCurrentAccountId() uint64
+	GetCurrentAccountEmail() string
 	GetCurrentAccountUuid() string
-	GetScopes() []string
+	GetScopes() map[string]uint16
 	HasScope(scopes ...string) bool
+	GetRequestScopes() []string
+	SetRequestScopes(scopes ...string)
+	GetRoles() map[string]uint16
+	GetRoleId(role string) uint16
+	HasRole(roles ...string) bool
+	SetActiveRole(role string)
+	GetIssuer() string
+	RequestUUID() string
+	SetRequestUUID(str string)
+	SetDynamicFilters(filter []dfilter.Filter)
+	GetDynamicFilters() []dfilter.Filter
+	Filters() map[string][]string
+	SetKey(key string, value any)
+	GetKey(key string) (value any, exists bool)
+	Translate(msgId, message string, params ...any) string
+	SetLanguage(Language)
+	GetLanguage() Language
+}
 
+type HttpRequester interface {
+	Requester
+	SetIsResponded(bool)
+	IsResponded() bool
 	GetBody() any
 	SetBody(any)
 	Request() *http.Request
 	Writer() http.ResponseWriter
-	BindRequest(body any) (err errors.ErrorModel)
-	MustLocalize(lc *i18n.LocalizeConfig) string
+	BindRequest(req Validatable) (err errors.ErrorModel)
 	ShouldLocalize(lc *i18n.LocalizeConfig) string
+	MustLocalize(lc *i18n.LocalizeConfig) string
 	Localize(msgId string, message string, params ...map[string]any) string
+	GetHttpContext() any
+	SetCookie(cookie any)
+	FormValue(key string) string
 	GetQuery(key string) string
 	GetParam(key string) string
 	GetFile(key string) (*multipart.FileHeader, error)
 	GetFiles(key string) ([]*multipart.FileHeader, error)
-	Filters() map[string][]string
-	IsResponded() bool
-	SetResponded(bool)
-	SetDynamicFilters(filter []dfilter.Filter)
-	GetDynamicFilters() []dfilter.Filter
-	// SetTemp sets temp into current request to handle during processing
-	// request
-	SetTemp(key string, value any)
-	// GetTemp gets the existing temp value from request, returns nil if
-	// nothing found for given key
-	GetTemp(key string) any
+	GetAllFiles() (map[string][]*multipart.FileHeader, error)
 	GetStatusCode() int
 	Websocket() (WebSocketHandler, errors.ErrorModel)
-
 	RespondBlob(status Status, contentType string, body []byte) errors.ErrorModel
 	RespondStream(status Status, contentType string, reader io.Reader) errors.ErrorModel
 	RespondFile(file string) errors.ErrorModel
