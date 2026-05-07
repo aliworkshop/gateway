@@ -46,7 +46,6 @@ type Requester interface {
 	GetRoles() map[string]uint16
 	GetRoleId(role string) uint16
 	HasRole(roles ...string) bool
-	SetActiveRole(role string)
 	GetIssuer() string
 	RequestUUID() string
 	SetRequestUUID(str string)
