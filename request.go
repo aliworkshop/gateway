@@ -7,9 +7,9 @@ import (
 	"mime/multipart"
 	"net/http"
 
+	ad "github.com/aliworkshop/authorizer/port"
 	"github.com/aliworkshop/dfilter"
-	errors "github.com/aliworkshop/errors"
-	"github.com/aliworkshop/gateway/v2/authorization"
+	"github.com/aliworkshop/errors"
 	"github.com/nicksnyder/go-i18n/v2/i18n"
 )
 
@@ -32,8 +32,8 @@ type Requester interface {
 	Sorter() Sorter
 	SetSorter(sorting Sorter)
 
-	SetAuth(auth authorization.Authorizer)
-	GetAuth() authorization.Authorizer
+	SetAuth(auth ad.Authorizer)
+	GetAuth() ad.Authorizer
 	Token() (token string)
 	IsAuthenticated() bool
 	GetCurrentAccountId() uint64
