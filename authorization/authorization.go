@@ -25,4 +25,6 @@ type Claim interface {
 	GetExpireAt() time.Time
 	GetUserId() uint64
 	GetIssuer() string
+	GetUuid() string
+	GetMobile() string
 }
